@@ -105,17 +105,7 @@
 		const actions = this._actions.filter(action => action.isValid());
 		const items = actions.map(action => action.item());
 		const delay = items.reduce((r, item) => r + Math.max(0, -item.speed), 0);
-		if (_proportionation)
-		{
-			var CastTime = (delay != 0) ?  100 / delay : 0;
-		}
-		else
-		{
-			var CastTime = Math.sqrt(delay) / this.tpbSpeed();
-		}
-
-		return CastTime;
-		//return (parameters.Proportionation) ? (delay != 0) ? 100 / delay : 0 : Math.sqrt(delay) / this.tpbSpeed();
+		return (_proportionation) ? (delay != 0) ? 100 / delay : 0 : Math.sqrt(delay) / this.tpbSpeed();
 	};
 
 
