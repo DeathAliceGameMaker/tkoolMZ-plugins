@@ -7,7 +7,7 @@
  * @file DA_TPBSpeedChangeVariable
  * @plugindesc It is a plug-in that manages the time when the gauge accumulates in TPB with a variable.
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @help
  * The battle speed here is the speed at which the gauge accumulates.
@@ -58,7 +58,7 @@
  * @file DA_TPBSpeedChangeVariable
  * @plugindesc TPBにおけるゲージの溜まる時間を変数で管理するプラグインです。
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @help
  * ここでいうバトルスピードは、ゲージのたまる速度です。
