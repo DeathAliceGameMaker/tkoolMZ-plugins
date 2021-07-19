@@ -7,7 +7,7 @@
  * @file DA_TPBSpeedOptimisation
  * @plugindesc TPB speed optimization
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @param Proportionation
  * @type boolean
@@ -19,7 +19,7 @@
  *
  * @help
  * 【About the speed at which the gauge of the time progress battle accumulates】
- * Conventional TPB speed is the square root of each character's agility plus +1 but it is the square root of the agility of each character and the'difference of agility'.
+ * The conventional TPB speed is the square root of each character's agility plus +1. However, it is the sum of the agility of each character and the'difference in agility'.
  * Difference in agility: Maximum agility of all combat characters-Minimum agility of all combat characters
  * As a result, the number of actions n becomes "the character with the lowest agility <= n <2", and even if there is an extreme difference in agility, it can be recovered.
  * Therefore, the TPB speed when the agility is buffed will also be changed according to the above number of actions.
@@ -37,6 +37,10 @@
  * Modification, redistribution freedom, commercial availability, and rights display are optional.
  * The author is not responsible, but we will deal with defects to the extent possible.
  *
+ * ■ Update history
+ * ver.1.0: First edition created
+ * ver.1.1: Changed the TPB speed value from the square root value of each character's agility and'difference in agility'to the value of each character's agility and'difference in agility'.
+ *
  */
 
 
@@ -46,7 +50,7 @@
  * @file DA_TPBSpeedOptimisation
  * @plugindesc TPBスピードの最適化
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @param Proportionation
  * @type boolean
@@ -58,7 +62,7 @@
  *
  * @help
  * 【タイムプログレスバトルのゲージの溜まる速度について】
- * 従来のTPBスピードは各キャラクターの敏捷性の平方根に+1した値でしたが、それを各キャラクターの敏捷性と'敏捷性の差分'の平方根の値になります。
+ * 従来のTPBスピードは各キャラクターの敏捷性の平方根に+1した値でしたが、それを各キャラクターの敏捷性と'敏捷性の差分'を合わせた値になります。
  * 敏捷性の差分：戦闘キャラ全体の最大敏捷性 - 戦闘キャラ全体の最小敏捷性
  * これにより行動回数nは 「敏捷性の一番低いキャラ <= n < 2」 となり、敏捷性に極端な差があっても挽回できるようになっています。
  * よって敏捷性にバフがかかった状態のTPBスピードも上記行動回数に沿って変更されます。
@@ -75,6 +79,10 @@
  * 特に制約はありません。
  * 改変、再配布自由、商用可、権利表示も任意です。
  * 作者は責任を負いませんが、不具合については可能な範囲で対応します。
+ *
+ * ■更新履歴
+ * ver.1.0: 初版作成
+ * ver.1.1: TPBスピードの値を各キャラクターの敏捷性と'敏捷性の差分'の合わせた平方根の値から各キャラクターの敏捷性と'敏捷性の差分'を合わせた値に変更。
  *
  */
 
@@ -93,12 +101,12 @@
 	var _proportionation = toBoolean(parameters.Proportionation);
 
 	Game_Battler.prototype.tpbSpeed = function() {
-		return Math.sqrt(this.agi + GetMaxAGI() - GetMinAGI());
+		return this.agi + GetMaxAGI() - GetMinAGI();
 	};
 
 	Game_Battler.prototype.tpbBaseSpeed = function() {
 		const baseAgility = GetMaxAGI();
-		return Math.sqrt(baseAgility);
+		return baseAgility;
 	};
 
 	Game_Battler.prototype.tpbRequiredCastTime = function() {
