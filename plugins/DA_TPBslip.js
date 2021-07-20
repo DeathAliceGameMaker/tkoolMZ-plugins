@@ -40,19 +40,19 @@
  * Modification, redistribution freedom, commercial availability, and rights display are optional.
  * The author is not responsible, but we will deal with defects to the extent possible.
  *
- * @param OneCoolDivHP
+ * @param OneCourseDivHP
  * @type number
  * @text 1 course division number ： HP
  * @desc The larger this number, the more times HP will automatically recover and the smaller the amount of recovery.
  * @default 6
  *
- * @param OneCoolDivMP
+ * @param OneCourseDivMP
  * @type number
  * @text 1 course division number ： MP
  * @desc The larger this number, the more times MP will automatically recover and the smaller the amount of recovery.
  * @default 6
  *
- * @param OneCoolDivTP
+ * @param OneCourseDivTP
  * @type number
  * @text 1 course division number ： TP
  * @desc The larger this number, the more times TP will automatically recover and the smaller the amount of recovery.
