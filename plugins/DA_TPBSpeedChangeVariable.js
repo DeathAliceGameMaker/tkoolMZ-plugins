@@ -7,7 +7,7 @@
  * @file DA_TPBSpeedChangeVariable
  * @plugindesc It is a plug-in that manages the time when the gauge accumulates in TPB with a variable.
  * @author DeathAlice
- * @version 1.1
+ * @version 1.2
  *
  * @help
  * The battle speed here is the speed at which the gauge accumulates.
@@ -58,7 +58,7 @@
  * @file DA_TPBSpeedChangeVariable
  * @plugindesc TPBにおけるゲージの溜まる時間を変数で管理するプラグインです。
  * @author DeathAlice
- * @version 1.1
+ * @version 1.2
  *
  * @help
  * ここでいうバトルスピードは、ゲージのたまる速度です。
@@ -114,16 +114,18 @@
 		return (str == "true") ? true : false;
 	}
 	var parameters = PluginManager.parameters("DA_TPBSpeedChangeVariable");
-	var _activeMode = toBoolean(parameters.ActiveMode);
-	var _waitMode = toBoolean(parameters.WaitMode);
+	var _activeMode = toBoolean(parameters.ActiveMode,true);
+	var _waitMode = toBoolean(parameters.WaitMode,false);
 	var battleSpeed_active = 240;
 	var battleSpeed_wait = 60;
-	Game_Unit.prototype.tpbReferenceTime = function() 
-	{
-		if (_activeMode && $gameVariables.value(parameters.BattleSpeed_ActiveMode) > 0)
-			battleSpeed_active = $gameVariables.value(parameters.BattleSpeed_ActiveMode);
-		if (_waitMode && $gameVariables.value(parameters.BattleSpeed_WaitMode) > 0)
-			battleSpeed_wait = $gameVariables.value(parameters.BattleSpeed_WaitMode);
-		return BattleManager.isActiveTpb() ? battleSpeed_active : battleSpeed_wait;
-	};
+	if(_activeMode || _waitMode){
+		Game_Unit.prototype.tpbReferenceTime = function() 
+		{
+			if (_activeMode && $gameVariables.value(parameters.BattleSpeed_ActiveMode) > 0)
+				battleSpeed_active = $gameVariables.value(parameters.BattleSpeed_ActiveMode);
+			if (_waitMode && $gameVariables.value(parameters.BattleSpeed_WaitMode) > 0)
+				battleSpeed_wait = $gameVariables.value(parameters.BattleSpeed_WaitMode);
+			return BattleManager.isActiveTpb() ? battleSpeed_active : battleSpeed_wait;
+		};
+	}
 })();

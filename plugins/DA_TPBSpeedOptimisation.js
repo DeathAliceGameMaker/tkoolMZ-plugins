@@ -7,7 +7,7 @@
  * @file DA_TPBSpeedOptimisation
  * @plugindesc TPB speed optimization
  * @author DeathAlice
- * @version 1.1
+ * @version 1.2
  *
  * @param Proportionation
  * @type boolean
@@ -40,6 +40,7 @@
  * ■ Update history
  * ver.1.0: First edition created
  * ver.1.1: Changed the TPB speed value from the square root value of each character's agility and'difference in agility'to the value of each character's agility and'difference in agility'.
+ * ver.1.2: Fixed a bug.
  *
  */
 
@@ -50,7 +51,7 @@
  * @file DA_TPBSpeedOptimisation
  * @plugindesc TPBスピードの最適化
  * @author DeathAlice
- * @version 1.1
+ * @version 1.2
  *
  * @param Proportionation
  * @type boolean
@@ -83,6 +84,7 @@
  * ■更新履歴
  * ver.1.0: 初版作成
  * ver.1.1: TPBスピードの値を各キャラクターの敏捷性と'敏捷性の差分'の合わせた平方根の値から各キャラクターの敏捷性と'敏捷性の差分'を合わせた値に変更。
+ * ver.1.2: 不具合を修正。
  *
  */
 
@@ -98,7 +100,7 @@
 	}
 
 	var parameters = PluginManager.parameters("DA_TPBSpeedOptimisation");
-	var _proportionation = toBoolean(parameters.Proportionation);
+	var _proportionation = toBoolean(parameters.Proportionation ,false);
 
 	Game_Battler.prototype.tpbSpeed = function() {
 		return this.agi + GetMaxAGI() - GetMinAGI();
@@ -109,12 +111,15 @@
 		return baseAgility;
 	};
 
-	Game_Battler.prototype.tpbRequiredCastTime = function() {
-		const actions = this._actions.filter(action => action.isValid());
-		const items = actions.map(action => action.item());
-		const delay = items.reduce((r, item) => r + Math.max(0, -item.speed), 0);
-		return (_proportionation) ? (delay != 0) ? 100 / delay : 0 : Math.sqrt(delay) / this.tpbSpeed();
-	};
+	if(_proportionation)
+	{
+		Game_Battler.prototype.tpbRequiredCastTime = function() {
+			const actions = this._actions.filter(action => action.isValid());
+			const items = actions.map(action => action.item());
+			const delay = items.reduce((r, item) => r + Math.max(0, -item.speed), 0);
+			return (delay != 0) ? 100 / delay : 0 ;
+		};
+	}
 
 
 	function GetMaxAGI()
