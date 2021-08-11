@@ -126,6 +126,7 @@
 	const SlipDIV_HP = Number(parameters.OneCourseDivHP);
 	const SlipDIV_MP = Number(parameters.OneCourseDivMP);
 	const SlipDIV_TP = Number(parameters.OneCourseDivTP);
+	const _Game_Battle_updateTpbIdleTime =Game_Battler.prototype.updateTpbIdleTime;
 
 	function ExtraTrunc (value)
 	{
@@ -134,9 +135,7 @@
 
 
 	Game_Battler.prototype.updateTpbIdleTime = function() {
-		if (!this.canMove() || this.isTpbCharged()) {
-			this._tpbIdleTime += this.tpbAcceleration();
-		}
+		_Game_Battle_updateTpbIdleTime.call(this);
 		this.Allslip();
 	};
 
