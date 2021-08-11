@@ -20,18 +20,24 @@
  * @text ボリューム
  * @desc 効果音の音量
  * @default 90
+ * @max 100
+ * @min 0
  *
  * @param pitch
  * @type number
  * @text ピッチ
  * @desc 効果音ピッチ
  * @default 100
+ * @max 150
+ * @min 50
  *
  * @param pan
  * @type number
  * @text パン
  * @desc 効果音のパン
  * @default 0
+ * @max 100
+ * @min -100
  *
  * @help
  * TPBのゲージがたまった時に効果音が流れるプラグインです。
