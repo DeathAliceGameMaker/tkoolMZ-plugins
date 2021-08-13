@@ -1,7 +1,7 @@
 //=============================================================================
 // DA_TPBSpeedOptimisation.js
 //=============================================================================
-/*
+/*:
  * 
  * @target MZ
  * @file DA_TPBSpeedOptimisation
@@ -33,9 +33,8 @@
  * For example, if you want to act 3 times faster than the charge time, you can triple the normal attack by entering "-300".
  *
  * ■ Terms of Use
- * There are no particular restrictions.
- * Modification, redistribution freedom, commercial availability, and rights display are optional.
- * The author is not responsible, but we will deal with defects to the extent possible.
+ * This plugin is under the MIT license.
+ * MIT license: http://opensource.org/licenses/mit-license.php
  *
  * ■ Update history
  * ver.1.0: First edition created
@@ -77,9 +76,8 @@
  * 例えば、通常攻撃はチャージタイムの3倍の速さで行動したい場合は「-300」と入力することで3倍になります。
  *
  * ■利用規約
- * 特に制約はありません。
- * 改変、再配布自由、商用可、権利表示も任意です。
- * 作者は責任を負いませんが、不具合については可能な範囲で対応します。
+ * このプラグインはMITライセンスに基づきます。
+ * MITライセンス：http://opensource.org/licenses/mit-license.php 
  *
  * ■更新履歴
  * ver.1.0: 初版作成

@@ -1,7 +1,7 @@
 //=============================================================================
 // DA_TPBslip.js
 //=============================================================================
-/*
+/*:
  * 
  * @target MZ
  * @file DA_TPBslip
@@ -35,10 +35,9 @@
  * Example: When the maximum HP of a character for which <slip_HP: 5> is valid is "1000" and the number of divisions per course is "10",
  * "Memo column value (5)" * "Upper limit of ability value (1000)" / "1 cool division number (10)" / 100 = "One recovery amount (5)"
  *
- * ■ Terms of Use
- * There are no particular restrictions.
- * Modification, redistribution freedom, commercial availability, and rights display are optional.
- * The author is not responsible, but we will deal with defects to the extent possible.
+* ■ Terms of Use
+ * This plugin is under the MIT license.
+ * MIT license: http://opensource.org/licenses/mit-license.php
  *
  * @param OneCourseDivHP
  * @type number
@@ -96,9 +95,8 @@
  *		「メモ欄の値(5)」* 「能力値の上限値(1000)」 / 「1クール分割数(10)」 / 100 = 「1回の回復量(5)」
  *
  * ■利用規約
- * 特に制約はありません。
- * 改変、再配布自由、商用可、権利表示も任意です。
- * 作者は責任を負いませんが、不具合については可能な範囲で対応します。
+ * このプラグインはMITライセンスに基づきます。
+ * MITライセンス：http://opensource.org/licenses/mit-license.php 
  *
  * @param OneCourseDivHP
  * @type number

@@ -14,10 +14,9 @@
  * The default is 4 seconds for 240 frames for active and 1 second for 60 frames for weight.
  * If the value of the variable is set to "0 or less", it will be the default value.
  *
- * ■terms of use
- * There are no particular restrictions.
- * It is optional to modify, redistribute, commercialize, and display rights.
- * The author is not responsible, but we will deal with defects to the extent possible.
+ * ■ Terms of Use
+ * This plugin is under the MIT license.
+ * MIT license: http://opensource.org/licenses/mit-license.php
  *
  * 
  * @param ActiveMode
@@ -66,9 +65,8 @@
  * 変数の値を「0以下」にするとデフォルトの値になります。
  *
  * ■利用規約
- * 特に制約はありません。
- * 改変、再配布自由、商用可、権利表示も任意です。
- * 作者は責任を負いませんが、不具合については可能な範囲で対応します。
+ * このプラグインはMITライセンスに基づきます。
+ * MITライセンス：http://opensource.org/licenses/mit-license.php 
  *
  * 
  * @param ActiveMode
