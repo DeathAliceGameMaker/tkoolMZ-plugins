@@ -7,7 +7,7 @@
  * @file DA_TPBslip
  * @plugindesc Plugin that gradually recovers over time with TPB
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @help
  * It is executed by adding the following tag to the memo field such as state.
