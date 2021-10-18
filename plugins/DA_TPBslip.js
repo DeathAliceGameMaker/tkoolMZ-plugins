@@ -1,7 +1,7 @@
 //=============================================================================
 // DA_TPBslip.js
 //=============================================================================
-/*:
+/*
  * 
  * @target MZ
  * @file DA_TPBslip
@@ -66,7 +66,7 @@
  * @file DA_TPBslip
  * @plugindesc TPBで時間経過で徐々に回復するプラグイン
  * @author DeathAlice
- * @version 1.0
+ * @version 1.1
  *
  * @help
  * ステートなどのメモ欄に以下のタグを付けることで実行されます。
@@ -126,11 +126,6 @@
 	const SlipDIV_TP = Number(parameters.OneCourseDivTP);
 	const _Game_Battle_updateTpbIdleTime =Game_Battler.prototype.updateTpbIdleTime;
 
-	function ExtraTrunc (value)
-	{
-		return (value > 0) ? Math.ceil(value) : Math.floor(value);
-	}
-
 
 	Game_Battler.prototype.updateTpbIdleTime = function() {
 		_Game_Battle_updateTpbIdleTime.call(this);
@@ -158,12 +153,15 @@
 		const slipRateHP = this.findTagAddValue('slip_HP');
 		if(slipRateHP != 0){
 			this.hpSlipFlame = (isNaN(this.hpSlipFlame)) ? 0 : this.hpSlipFlame + 1;
+			this.hpSlipRate = (isNaN(this.hpSlipRate)) ? 0 : this.hpSlipRate;
 			if(SlipDIV_HP > 0){
 				const flameDIV_HP= Game_Unit.prototype.tpbReferenceTime() / SlipDIV_HP;
 				if (this.hpSlipFlame >= flameDIV_HP){
 					this.hpSlipFlame = 0;
-					const value = (slipRateHP < 0) ? -Math.min(ExtraTrunc(this.mhp * -slipRateHP / SlipDIV_HP / 100) , this.maxSlipDamage()) : 
-						ExtraTrunc(this.mhp * slipRateHP / SlipDIV_HP / 100);
+					this.hpSlipRate += this.mhp * slipRateHP / SlipDIV_HP / 100;
+					const value = (slipRateHP < 0) ? -Math.min(Math.ceil(-this.hpSlipRate) , this.maxSlipDamage()) : 
+						Math.ceil(this.hpSlipRate);
+					this.hpSlipRate -=value;
 					this.gainHp(value);
 				}
 			}
@@ -174,11 +172,14 @@
 		const slipRateMP = this.findTagAddValue('slip_MP');
 		if(slipRateMP != 0){
 			this.mpSlipFlame = (isNaN(this.mpSlipFlame)) ? 0 : this.mpSlipFlame + 1;
+			this.mpSlipRate = (isNaN(this.mpSlipRate)) ? 0 : this.mpSlipRate;
 			if(SlipDIV_MP > 0){
 				const flameDIV_MP = Game_Unit.prototype.tpbReferenceTime() / SlipDIV_MP;
 				if (this.mpSlipFlame >= flameDIV_MP){
 					this.mpSlipFlame = 0;
-					const value = ExtraTrunc(this.mmp * slipRateMP / SlipDIV_MP / 100);
+					this.mpSlipRate += this.mmp * slipRateMP / SlipDIV_MP / 100;
+					const value = Math.ceil(this.mpSlipRate);
+					this.mpSlipRate -= value;
 					this.gainMp(value);
 				}
 			}
@@ -189,11 +190,14 @@
 		const slipRateTP = this.findTagAddValue('slip_TP');
 		if(slipRateTP != 0){
 			this.tpSlipFlame = (isNaN(this.tpSlipFlame)) ? 0 : this.tpSlipFlame + 1;
+			this.tpSlipRate = (isNaN(this.tpSlipRate)) ? 0 : this.tpSlipRate;
 			if(SlipDIV_TP > 0){
 				const flameDIV_TP = Game_Unit.prototype.tpbReferenceTime() / SlipDIV_TP;
 				if (this.tpSlipFlame >= flameDIV_TP){
 					this.tpSlipFlame = 0;
-					const value = ExtraTrunc(slipRateTP / SlipDIV_TP);
+					this.tpSlipRate += slipRateTP / SlipDIV_TP;
+					const value = Math.ceil(this.tpSlipRate);
+					this.tpSlipRate -= value;
 					this.gainTp(value);
 				}
 			}
